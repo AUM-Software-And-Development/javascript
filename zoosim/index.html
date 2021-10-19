@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="styles.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section class="Pivot">
+        <p>&</p>
+    </section>
+
+    <section class="Intro Indent">
+        <div class="Name"></div>
+        <div class="Capacity"></div>
+        <div class="NumberOfGuests"></div>
+    </section>
+
+    <section class="StyleContainer">
+    </section>
+
+    <section class="Selections Relate">
+        <div class="NotificationMessage">
+            <h4>Select an animal.</h4>
+        </div>
+        <div class="SelectionMargin">
+            <select name="Animals" id="AnimalsSelect" class="AnimalsSelect"></select>
+        </div>
+        <form id="AnimalForm" class="AnimalEditor">
+            <div class="extraLabelMargins">
+                <label for="Name">Name:</label>
+                <br>
+                <input type="text" class="AnimalName" name="AnimalName" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Age">Age:</label>
+                <br>
+                <input type="text" class="AnimalAge" name="AnimalAge" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Weight">Weight:</label>
+                <br>
+                <input type="text" class="AnimalWeight" name="AnimalWeight" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Gender">Gender:</label>
+                <br>
+                <input type="text" class="AnimalGender" name="AnimalGender" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Pregnancy">isPregnant:</label>
+                <br>
+                <input type="text" class="AnimalPregnancy" name="AnimalPregnancy" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Type">Type:</label>
+                <br>
+                <input type="text" class="AnimalType" name="AnimalType" required>
+            </div>
+        </form>
+    </section>
+
+    <div class="ButtonFlex">
+        <section class="Buttons Relate Animal">
+            <button form="AnimalForm" type="submit" id="AddAnimalButton">Add</button>
+            <button type="button" id="ApplyToAnimalButton">Apply</button>
+            <button type="button" id="RemoveAnimalButton">Remove</button>
+        </section>
+        <section class="Buttons Relate Human">
+            <button form="AnimalForm" type="submit" id="AddAnimalButton">Add</button>
+            <button type="button" id="ApplyToAnimalButton">Apply</button>
+            <button type="button" id="RemoveAnimalButton">Remove</button>
+        </section>
+    </div>
+
+    <section class="Table">
+        <table class="ZooTable"></table>
+        <script src="script.js"></script>
+    </section>
+
+    </div>
+
+</body>
+
+</html>

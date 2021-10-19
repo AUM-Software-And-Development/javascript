@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+}
+:root {
+  --Background: rgba(144, 108, 48, 0.16);
+  --FontData: rgba(9, 16, 25, 0.81);
+  --HUDFont: rgba(36, 25, 16, 0.81);
+  --Gray: rgba(196, 196, 196, 0.49);
+  --DarkGray: rgba(196, 196, 196, 0.81);
+  --Black: rgba(1, 2, 4, 0.81);
+  --ClearBlack: rgba(1, 2, 4, 1);
+  --TableHeads: #e25d1609;
+  --NthRows: #ad402cb6;
+  --Contrasting: #32439c;
+  --BigBorder: rgba(48, 49, 144, 0.16);
+  --Orange: rgba(224, 144, 36, 0.81);
+}
+body {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 256;
+  color: var(--Black);
+  background-color: var(--Background);
+}
+
+section.StyleContainer {
+  position: absolute;
+  margin-left: 49vw;
+  transform: translate(-16%, -25%);
+  padding: 256px;
+  box-shadow: -1vw -2px 4px var(--BigBorder);
+  border-radius: 256px;
+}
+
+section {
+  padding-top: 16px;
+}
+section.Pivot {
+  position: absolute;
+  padding: 0;
+  margin-left: 1px;
+  margin-bottom: 4px;
+  margin-right: 9px;
+  margin-top: 16px;
+  color: var(--FontData);
+}
+.Pivot p {
+  padding: 0;
+}
+section.Indent {
+  position: relative;
+  margin-left: 16px;
+}
+section.Relate {
+  max-width: 49vw;
+  margin: 0 auto;
+}
+
+section.Intro {
+  font-weight: 625;
+  color: var(--HUDFont);
+  border-left: 0.02px solid rgba(1, 2, 4, 0.256);
+}
+section.Intro p {
+  margin-left: 4px;
+  margin-bottom: 9px;
+  margin-right: 16px;
+  margin-top: 25px;
+}
+
+section.Selections {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+section.Selections div.NotificationMessage h4 {
+  margin-left: 16px;
+  margin-bottom: 25px;
+  margin-right: 36px;
+  margin-top: 49px;
+  padding-left: 16px;
+  font-weight: 625;
+  border-left: 4px solid var(--Orange);
+}
+section.Selections select {
+  margin-left: 16px;
+  margin-bottom: 25px;
+  margin-right: 36px;
+  margin-top: 49px;
+  border: 0.04px solid rgba(1, 2, 4, 0.256);
+  border-color: var(--DarkGray);
+}
+.extraLabelMargins {
+  margin-left: 16px;
+  margin-bottom: 25px;
+  margin-right: 36px;
+  margin-top: 49px;
+  border: 1px solid var(--DarkGray);
+  max-width: 81px;
+}
+section.Selections input {
+  color: var(--ClearBlack);
+  min-width: 256px;
+}
+
+div.ButtonFlex {
+  display: flex;
+  flex: 50%;
+  align-items: center;
+}
+section.Buttons {
+  margin: 0 auto;
+  margin-bottom: 4px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+}
+section.Buttons button {
+  margin-left: 9px;
+  margin-bottom: 4px;
+  margin-right: 9px;
+  margin-top: 16px;
+  height: 25px;
+  font-weight: 256;
+  border: 0.16px solid var(--Gray);
+  border-radius: 1px;
+  background: rgba(1, 2, 4, 0.016);
+  color: var(--Black);
+  max-width: 81px;
+}
+section.Buttons.Animal button,
+section.Buttons.Animal {
+  border-right: 4px solid var(--Contrasting);
+}
+section.Buttons.Human button,
+section.Buttons.Human {
+  border-left: 4px dotted var(--Contrasting);
+}
+
+section.Table table {
+  min-width: 49vw;
+  margin: 0 auto;
+  padding-left: 1px;
+  padding-bottom: 2px;
+  padding-right: 4px;
+  padding-top: 9px;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: left;
+  border-collapse: collapse;
+  border-left: 16px solid var(--Background);
+}
+section.Table thead tr {
+  background: var(--TableHeads);
+  margin: 0;
+  padding-left: 2px;
+  padding-bottom: 4px;
+  padding-right: 9px;
+  padding-top: 16px;
+  color: var(--Black);
+  text-align: left;
+}
+section.Table tbody tr:nth-of-type(odd) {
+  background: var(--NthRows);
+}
+section.Table td {
+  margin: 0;
+  padding-left: 1px;
+  padding-bottom: 2px;
+  padding-right: 4px;
+  padding-top: 9px;
+}

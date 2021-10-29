@@ -69,7 +69,6 @@ function GetAnimalChanges(requestedFieldData) {
   for (let dataEntries of requestedFieldData.entries()) {
     newFieldData.push(dataEntries[1]);
   }
-  console.log(newFieldData);
   /* Send in animal format */
   return AnimalInterface(newFieldData);
 }
@@ -83,7 +82,6 @@ function UpdateAnimal(requestedFieldData) {
 
     HTML_ZooAnimalsTable.rows[selected + 1].innerHTML = "";
     Object.values(Zoo_.Animals[selected]).forEach((field) => {
-      console.log(field);
       if (field.name) {
         HTML_ZooAnimalsTable.rows[
           selected + 1
@@ -166,7 +164,6 @@ Zoo_.Animals = [
 CreateAnimalListOptions(Zoo_);
 BuildTableElementFromArray(HTML_ZooAnimalsTable, Zoo_.Animals);
 Zoo_.AdmitGuests();
-console.log(Zoo_.Animals);
 
 HTML_ZooName.innerHTML =
   "<p>" + "The name of the Zoo is: " + Zoo_.Name + "</p>";

@@ -50,6 +50,7 @@ section.Pivot {
 section.Indent {
   position: relative;
   margin-left: 16px;
+  margin-bottom: 16px;
 }
 section.Relate {
   max-width: 49vw;
@@ -63,9 +64,13 @@ section.Intro {
 }
 section.Intro p {
   margin-left: 4px;
-  margin-bottom: 9px;
+  margin-bottom: 25px;
   margin-right: 16px;
-  margin-top: 25px;
+  margin-top: 9px;
+}
+div.zooField {
+  background-color: rgba(221, 216, 216, 0.644);
+  width: 16vw;
 }
 
 section.Selections {
@@ -89,6 +94,7 @@ section.Selections select {
   margin-top: 49px;
   border: 0.04px solid rgba(1, 2, 4, 0.256);
   border-color: var(--DarkGray);
+  height: 25.6px;
 }
 .extraLabelMargins {
   margin-left: 16px;
@@ -100,9 +106,13 @@ section.Selections select {
 }
 section.Selections input {
   color: var(--ClearBlack);
-  min-width: 256px;
+  min-width: 144px;
+  height: 25.6px;
 }
 
+button:hover {
+  cursor: pointer;
+}
 div.ButtonFlex {
   display: flex;
   flex: 50%;
@@ -120,12 +130,13 @@ section.Buttons button {
   margin-bottom: 4px;
   margin-right: 9px;
   margin-top: 16px;
-  height: 25px;
+  height: 32.4px;
   font-weight: 256;
   border: 0.16px solid var(--Gray);
   border-radius: 1px;
   background: rgba(1, 2, 4, 0.016);
   color: var(--Black);
+  min-width: 81px;
   max-width: 81px;
 }
 section.Buttons.Animal button,
@@ -134,7 +145,8 @@ section.Buttons.Animal {
 }
 section.Buttons.Human button,
 section.Buttons.Human {
-  border-left: 4px dotted var(--Contrasting);
+  border-left: 2px dashed var(--Contrasting);
+  padding-left: 16px;
 }
 
 section.Table table {
@@ -165,8 +177,9 @@ section.Table tbody tr:nth-of-type(odd) {
 }
 section.Table td {
   margin: 0;
-  padding-left: 1px;
-  padding-bottom: 2px;
-  padding-right: 4px;
-  padding-top: 9px;
+  padding-left: 2px;
+  padding-bottom: 16px;
+  padding-right: 9px;
+  padding-top: 16px;
+  height: 16px;
 }

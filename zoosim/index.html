@@ -12,13 +12,15 @@
 <body>
 
     <section class="Pivot">
-        <p>&</p>
     </section>
 
     <section class="Intro Indent">
-        <div class="Name"></div>
-        <div class="Capacity"></div>
-        <div class="NumberOfGuests"></div>
+        <label for="ZooName">The name of the Zoo:</label>
+        <div class="Name zooField" id="divZooName"></div>
+        <label for="ZooCapacity">Its capacity:</label>
+        <div class="Capacity zooField" id="divCapacity"></div>
+        <label for="ZooGuestAmount">How many guests does it have?:</label>
+        <div class="NumberOfGuests zooField" id="divNumberOfGuests"></div>
     </section>
 
     <section class="StyleContainer">
@@ -63,9 +65,21 @@
             </div>
 
             <div class="extraLabelMargins">
-                <label for="Type">Type:</label>
+                <label for="MoveDistance">MoveDistance:</label>
                 <br>
-                <input type="text" class="AnimalType" name="AnimalType" required>
+                <input type="text" class="MoveDistance" name="MoveDistance" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="Dropdown">Dropdown:</label>
+                <br>
+                <input type="text" class="Dropdown" name="Dropdown" required>
+            </div>
+
+            <div class="extraLabelMargins">
+                <label for="MoveMethod">MoveMethod:</label>
+                <br>
+                <input type="text" class="MoveMethod" name="MoveMethod" required>
             </div>
         </form>
     </section>
@@ -76,20 +90,23 @@
             <button type="button" id="ApplyToAnimalButton">Apply</button>
             <button type="button" id="RemoveAnimalButton">Remove</button>
         </section>
+
         <section class="Buttons Relate Human">
-            <button form="AnimalForm" type="submit" id="AddAnimalButton">Add</button>
-            <button type="button" id="ApplyToAnimalButton">Apply</button>
-            <button type="button" id="RemoveAnimalButton">Remove</button>
+            <p>Add a guest</p>
+            <button id="AddGuestButton">+ 1</button>
         </section>
     </div>
 
+
     <section class="Table">
         <table class="ZooTable"></table>
-        <script src="script.js"></script>
     </section>
 
-    </div>
-
 </body>
+
+<script src="zoos.js"></script>
+<script src="animals.js"></script>
+<script src="scripts.js"></script>
+<script src="eventhandlers.js"></script>
 
 </html>

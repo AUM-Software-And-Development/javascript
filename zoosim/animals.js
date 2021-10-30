@@ -8,10 +8,26 @@ class Animal {
     this.MoveDistance = 0.0;
     this.Dropdown = Animal;
     this.Move = MoveMethods.Move;
+    if (this.Name === "baby") {
+      this.Baby = undefined;
+    } else if (this.IsPregnant) {
+      this.Baby = this.GenerateBaby();
+    } else {
+      this.Baby = undefined;
+    }
   }
 
   MakePregnant() {
-    this.IsPregnant = true;
+    if (this.Gender.toLowerCase() === "male") {
+      throw "This animal is not a woman.";
+    } else {
+      this.IsPregnant = true;
+    }
+  }
+
+  GenerateBaby() {
+    let baby = ["Un-named", 0, 0, "Male", false, 0, this.Dropdown.name];
+    return AnimalInterface(baby);
   }
 
   GiveBirth() {}

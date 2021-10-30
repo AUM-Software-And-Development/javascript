@@ -43,6 +43,33 @@ export class ZooEvents {
     }
   }
 
+  static PregancyListener(zoo, form, selector, table, polymorphic) {
+    if (!zoo.Animals[selector.selectedIndex].IsPregnant) {
+      try {
+        zoo.Animals[selector.selectedIndex].MakePregnant();
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      zoo.Animals[selector.selectedIndex].IsPregnant = false;
+    }
+
+    polymorphic.FillAnimalForm(
+      zoo.Animals,
+      form,
+      selector.options[selector.selectedIndex].text
+    );
+    polymorphic.UpdateAnimalOnTable(zoo, selector, table);
+  }
+
+  static SelectListener(zoo, form, selctor, polymorphic) {
+    polymorphic.FillAnimalForm(
+      zoo.Animals,
+      form,
+      selctor.options[selctor.selectedIndex].text
+    );
+  }
+
   static UpdateGuestsListener(
     zoo,
     form,
@@ -63,13 +90,5 @@ export class ZooEvents {
         htmlLocation.innerHTML = `<p> ${zoo.NumberOfGuests} </p>`;
       }
     }
-  }
-
-  static SelectListener(zoo, form, selctor, polymorphic) {
-    polymorphic.FillAnimalForm(
-      zoo.Animals,
-      form,
-      selctor.options[selctor.selectedIndex].text
-    );
   }
 }

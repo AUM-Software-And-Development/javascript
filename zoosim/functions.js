@@ -30,8 +30,16 @@ export class HTMLZooFunctions {
       for (let key in field) {
         let cell = row.insertCell();
         let cellData;
-        if (key === "Dropdown" || key === "Move") {
-          cellData = document.createTextNode(field[key].name);
+        if (key === "Dropdown" || key === "Move" || key === "Baby") {
+          if (key === "Baby") {
+            if (field[key] === undefined) {
+              cellData = document.createTextNode("Not with child");
+            } else {
+              cellData = document.createTextNode(field[key].Name);
+            }
+          } else {
+            cellData = document.createTextNode(field[key].name);
+          }
         } else {
           cellData = document.createTextNode(field[key]);
         }
@@ -115,6 +123,51 @@ export class HTMLZooFunctions {
           table.rows[selected + 1].innerHTML += `<td>${field}</td>`;
         }
       });
+      selector.options[selected].text = zoo.Animals[selected].Name;
+    }
+  }
+
+  static UpdateAnimalOnTable(zoo, selector, table) {
+    if (zoo.Animals.length > 0) {
+      /* Get index */
+      let selected = selector.selectedIndex;
+      let animal = zoo.Animals[selected];
+
+      table.deleteRow(selected + 1);
+      let row = table.insertRow(selected + 1);
+      let cell = row.insertCell();
+
+      let cellData = document.createTextNode(animal.Name);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.Age);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.Weight);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.Gender);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.IsPregnant);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.MoveDistance);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.Dropdown.name);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      cellData = document.createTextNode(animal.Move.name);
+      cell.appendChild(cellData);
+      cell = row.insertCell();
+      if (animal.Baby) {
+        cellData = document.createTextNode(animal.Baby.Name);
+      } else {
+        cellData = document.createTextNode("Not with child");
+      }
+      cell.appendChild(cellData);
+
       selector.options[selected].text = zoo.Animals[selected].Name;
     }
   }

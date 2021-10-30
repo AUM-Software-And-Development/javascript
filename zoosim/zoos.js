@@ -41,11 +41,13 @@ class Zoo {
   }
 
   FindAnimalByName(name) {
+    let result;
     this.Animals.forEach((animal) => {
       if (animal.Name === name) {
-        return animal;
+        result = animal;
+        return;
       }
     });
-    return undefined;
+    return result;
   }
 }

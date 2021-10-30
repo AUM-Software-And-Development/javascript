@@ -223,7 +223,7 @@ section.Table table {
   margin-bottom: 256px;
   font-family: sans-serif;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
   border-collapse: collapse;
   border-left: 16px solid var(--Background);
 }
@@ -235,7 +235,7 @@ section.Table thead tr {
   padding-right: 9px;
   padding-top: 16px;
   color: var(--Black);
-  text-align: left;
+  text-align: center;
 }
 section.Table tbody tr:nth-of-type(odd) {
   background: var(--NthRows);

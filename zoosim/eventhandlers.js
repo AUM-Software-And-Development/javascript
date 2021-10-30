@@ -1,46 +1,75 @@
-HTML_ZooAnimalSelector.onclick = function () {
-  FillForm(
-    HTML_ZooAnimalsForm,
-    Zoo_.Animals,
-    HTML_ZooAnimalSelector.options[HTML_ZooAnimalSelector.selectedIndex].text
-  );
-};
+export class ZooEvents {
+  static AddAnimalListener(
+    zoo,
+    form,
+    selector,
+    table,
+    htmlLocation,
+    polymorphic
+  ) {
+    let changeRequest = new FormData(form);
+    if (polymorphic.ValidateAnimalForm(changeRequest)) {
+      zoo.AddAnimal(polymorphic.GetAnimalChanges(changeRequest));
+      polymorphic.AddAnimalToTable(table, zoo.Animals[zoo.Animals.length - 1]);
+      polymorphic.AddToSelectBox(
+        selector,
+        zoo.Animals[zoo.Animals.length - 1].Name
+      );
+    }
+    htmlLocation.innerHTML = `<p> ${zoo.Animals.length} </p>`;
+  }
 
-HTML_AddAnimalButton.onclick = function (e) {
-  e.preventDefault();
-  let changeRequest = new FormData(HTML_ZooAnimalsForm);
-  if (ValidateAnimalForm(changeRequest)) {
-    Zoo_.AddAnimal(GetAnimalChanges(changeRequest));
-    AddAnimalToTable(
-      HTML_ZooAnimalsTable,
-      Zoo_.Animals[Zoo_.Animals.length - 1]
+  static AddGuestListener(zoo, htmlLocation) {
+    if (zoo.AddGuest())
+      htmlLocation.innerHTML = `<p> ${zoo.NumberOfGuests} </p>`;
+  }
+
+  static DeleteAnimalListener(zoo, selector, table, htmlLocation, polymorphic) {
+    zoo.RemoveAnimal(zoo.Animals[selector.selectedIndex]);
+    polymorphic.DeleteAnimalFromTable(
+      zoo,
+      selector,
+      selector.selectedIndex,
+      table
     );
-    AddToSelectBox(
-      HTML_ZooAnimalSelector,
-      Zoo_.Animals[Zoo_.Animals.length - 1].Name
+    htmlLocation.innerHTML = `<p> ${zoo.Animals.length} </p>`;
+  }
+
+  static EditAnimalListener(zoo, form, selector, table, polymorphic) {
+    let changeRequest = new FormData(form);
+
+    if (polymorphic.ValidateAnimalForm(changeRequest)) {
+      polymorphic.UpdateAnimal(zoo, selector, table, changeRequest);
+    }
+  }
+
+  static UpdateGuestsListener(
+    zoo,
+    form,
+    htmlLocation,
+    htmlReturn,
+    polymorphic
+  ) {
+    let changeRequest = new FormData(form);
+    if (polymorphic.ValidateGuestForm(changeRequest)) {
+      let capacityStatus = polymorphic.UpdateGuestAmount(zoo, changeRequest);
+      if (capacityStatus != 0) {
+        htmlLocation.innerHTML = `<p> ${zoo.NumberOfGuests} </p>`;
+        htmlReturn.innerHTML = `<p> At guest capacity. ${capacityStatus} waiting. </p>`;
+        htmlReturn.style.height = "25.6px";
+        htmlReturn.style.background = "#041625";
+        htmlReturn.style.color = "white";
+      } else {
+        htmlLocation.innerHTML = `<p> ${zoo.NumberOfGuests} </p>`;
+      }
+    }
+  }
+
+  static SelectListener(zoo, form, selctor, polymorphic) {
+    polymorphic.FillAnimalForm(
+      zoo.Animals,
+      form,
+      selctor.options[selctor.selectedIndex].text
     );
   }
-};
-
-HTML_EditAnimalButton.onclick = function (e) {
-  e.preventDefault();
-  let changeRequest = new FormData(HTML_ZooAnimalsForm);
-
-  if (ValidateAnimalForm(changeRequest)) {
-    UpdateAnimal(changeRequest);
-  }
-};
-
-HTML_DeleteAnimalButton.onclick = function (e) {
-  e.preventDefault();
-  Zoo_.RemoveAnimal(Zoo_.Animals[HTML_ZooAnimalSelector.selectedIndex]);
-  DeleteAnimalFromTable(
-    HTML_ZooAnimalsTable,
-    HTML_ZooAnimalSelector.selectedIndex
-  );
-};
-
-HTML_AddGuestButton.addEventListener("click", (e) => {
-  if (Zoo_.AddGuest())
-    HTML_ZooGuests.innerHTML = `<p>It has ${Zoo_.NumberOfGuests} entrants</p>`;
-});
+}

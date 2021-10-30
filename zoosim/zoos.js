@@ -18,12 +18,8 @@ class Zoo {
     });
   }
 
-  UpdateAnimal(animal, animalInterface) {
-    this.Animals.forEach((zAnimal) => {
-      if (zAnimal === animal) {
-        this.Animals.splice(zAnimal.indexOf, 0, animalInterface);
-      }
-    });
+  UpdateAnimal(animalInterface, index) {
+    this.Animals.splice(index, 1, animalInterface);
   }
 
   AdmitGuests() {

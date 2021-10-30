@@ -21,78 +21,105 @@
         <div class="Capacity zooField" id="divCapacity"></div>
         <label for="ZooGuestAmount">How many guests does it have?:</label>
         <div class="NumberOfGuests zooField" id="divNumberOfGuests"></div>
+        <div class="GuestReturn zooField"></div>
+        <label for="ZooGuestAmount">How many animals does it have?:</label>
+        <div class="NumberOfAnimals zooField" id="divNumberOfAnimals"></div>
     </section>
 
     <section class="StyleContainer">
     </section>
 
     <section class="Selections Relate">
-        <div class="NotificationMessage">
-            <h4>Select an animal.</h4>
+
+        <div class="FlexMessages">
+            <div class="NotificationMessage L">
+                <h4>Select an animal.</h4>
+            </div>
+            <div class="NotificationMessage R">
+                <h4>Add a number of guests.</h4>
+            </div>
         </div>
-        <div class="SelectionMargin">
-            <select name="Animals" id="AnimalsSelect" class="AnimalsSelect"></select>
+
+        <div class="FlexForms">
+            <div class="FormContainer">
+                <div class="SelectionMargin">
+                    <select name="Animals" id="AnimalsSelect" class="AnimalsSelect"></select>
+                </div>
+                <form id="AnimalForm" class="AnimalEditor">
+                    <div class="extraLabelMargins">
+                        <label for="Name">Name:</label>
+                        <br>
+                        <input type="text" class="AnimalName" name="AnimalName" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="Age">Age:</label>
+                        <br>
+                        <input type="text" class="AnimalAge" name="AnimalAge" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="Weight">Weight:</label>
+                        <br>
+                        <input type="text" class="AnimalWeight" name="AnimalWeight" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="Gender">Gender:</label>
+                        <br>
+                        <input type="text" class="AnimalGender" name="AnimalGender" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="Pregnancy">Is Pregnant?:</label>
+                        <br>
+                        <input type="text" class="AnimalPregnancy" name="AnimalPregnancy" readonly>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="MoveDistance">Move Distance:</label>
+                        <br>
+                        <input type="text" class="MoveDistance" name="MoveDistance" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="Dropdown">Dropdown:</label>
+                        <br>
+                        <input type="text" class="Dropdown" name="Dropdown" required>
+                    </div>
+
+                    <div class="extraLabelMargins">
+                        <label for="MoveMethod">Move Method:</label>
+                        <br>
+                        <input type="text" class="MoveMethod" name="MoveMethod" required>
+                    </div>
+                </form>
+            </div>
+            <div class="FormContainer">
+                <form id="GuestForm" class="GuestEditor">
+                    <div class="extraLabelMargins">
+                        <label for="Guests">Guest Amount:</label>
+                        <br>
+                        <input type="text" class="Guests" name="Guests" required>
+                    </div>
+                </form>
+            </div>
         </div>
-        <form id="AnimalForm" class="AnimalEditor">
-            <div class="extraLabelMargins">
-                <label for="Name">Name:</label>
-                <br>
-                <input type="text" class="AnimalName" name="AnimalName" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="Age">Age:</label>
-                <br>
-                <input type="text" class="AnimalAge" name="AnimalAge" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="Weight">Weight:</label>
-                <br>
-                <input type="text" class="AnimalWeight" name="AnimalWeight" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="Gender">Gender:</label>
-                <br>
-                <input type="text" class="AnimalGender" name="AnimalGender" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="Pregnancy">isPregnant:</label>
-                <br>
-                <input type="text" class="AnimalPregnancy" name="AnimalPregnancy" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="MoveDistance">MoveDistance:</label>
-                <br>
-                <input type="text" class="MoveDistance" name="MoveDistance" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="Dropdown">Dropdown:</label>
-                <br>
-                <input type="text" class="Dropdown" name="Dropdown" required>
-            </div>
-
-            <div class="extraLabelMargins">
-                <label for="MoveMethod">MoveMethod:</label>
-                <br>
-                <input type="text" class="MoveMethod" name="MoveMethod" required>
-            </div>
-        </form>
     </section>
 
     <div class="ButtonFlex">
         <section class="Buttons Relate Animal">
+            <p>Animal editors</p>
             <button form="AnimalForm" type="submit" id="AddAnimalButton">Add</button>
             <button type="button" id="ApplyToAnimalButton">Apply</button>
             <button type="button" id="RemoveAnimalButton">Remove</button>
-        </section>
+            <button class="AnimalPregnancy">Pregnant?</button>
+            <button class="AnimalPregnancy">Birth Child</button>
 
+        </section>
         <section class="Buttons Relate Human">
-            <p>Add a guest</p>
+            <p>Guest editors</p>
+            <button id="UpdateGuestsButton">Update</button>
             <button id="AddGuestButton">+ 1</button>
         </section>
     </div>
@@ -104,9 +131,11 @@
 
 </body>
 
+<script src="main.js" type="module"></script>
+
 <script src="zoos.js"></script>
 <script src="animals.js"></script>
-<script src="scripts.js"></script>
-<script src="eventhandlers.js"></script>
+<script src="functions.js" type="module"></script>
+<script src="eventhandlers.js" type="module"></script>
 
 </html>

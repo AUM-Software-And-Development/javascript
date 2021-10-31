@@ -10,16 +10,13 @@ class Zoo {
     this.Animals.push(animal);
   }
 
-  RemoveAnimal(animal) {
-    this.Animals.forEach((zAnimal) => {
-      if (zAnimal === animal) {
-        this.Animals.splice(zAnimal.indexOf, 0);
-      }
-    });
-  }
-
-  UpdateAnimal(animalInterface, index) {
-    this.Animals.splice(index, 1, animalInterface);
+  AddGuest() {
+    if (this.NumberOfGuests < this.Capacity) {
+      this.NumberOfGuests++;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   AdmitGuests() {
@@ -31,12 +28,14 @@ class Zoo {
     }
   }
 
-  AddGuest() {
-    if (this.NumberOfGuests < this.Capacity) {
-      this.NumberOfGuests++;
-      return true;
+  BirthChild(animal) {
+    if (animal.Baby) {
+      this.Animals.push(animal.Baby);
+      animal.Baby = undefined;
+      animal.IsPregnant = false;
+      console.log(`An animal has been born to the mother ${animal.Name}!`);
     } else {
-      return false;
+      throw "This animal is not with child.";
     }
   }
 
@@ -49,5 +48,17 @@ class Zoo {
       }
     });
     return result;
+  }
+
+  UpdateAnimal(animalInterface, index) {
+    this.Animals.splice(index, 1, animalInterface);
+  }
+
+  RemoveAnimal(animal) {
+    this.Animals.forEach((zAnimal) => {
+      if (zAnimal === animal) {
+        this.Animals.splice(zAnimal.indexOf, 0);
+      }
+    });
   }
 }

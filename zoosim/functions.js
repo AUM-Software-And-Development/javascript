@@ -127,14 +127,18 @@ export class HTMLZooFunctions {
     }
   }
 
-  static UpdateAnimalOnTable(zoo, selector, table) {
+  static UpdateAnimalOnTable(zoo, index, table, replace) {
     if (zoo.Animals.length > 0) {
       /* Get index */
-      let selected = selector.selectedIndex;
-      let animal = zoo.Animals[selected];
+      let animal = zoo.Animals[index];
 
-      table.deleteRow(selected + 1);
-      let row = table.insertRow(selected + 1);
+      if (replace) {
+        index++;
+        table.deleteRow(index);
+      } else {
+        index++;
+      }
+      let row = table.insertRow(index);
       let cell = row.insertCell();
 
       let cellData = document.createTextNode(animal.Name);
@@ -167,8 +171,6 @@ export class HTMLZooFunctions {
         cellData = document.createTextNode("Not with child");
       }
       cell.appendChild(cellData);
-
-      selector.options[selected].text = zoo.Animals[selected].Name;
     }
   }
 

@@ -6,6 +6,7 @@ let HTML_ZooAnimalCount = document.querySelector(".NumberOfAnimals");
 let HTML_ZooAddOneGuestButton = document.getElementById("AddGuestButton");
 let HTML_ZooAnimalsForm = document.querySelector(".AnimalEditor");
 let HTML_ZooAnimalsTable = document.querySelector(".ZooTable");
+let HTML_ZooBirthChild = document.getElementById("AnimalBirth");
 let HTML_ZooCapacity = document.querySelector(".Capacity");
 let HTML_ZooDeleteAnimalButton = document.getElementById("RemoveAnimalButton");
 let HTML_ZooEditAnimalButton = document.getElementById("ApplyToAnimalButton");
@@ -20,7 +21,7 @@ let HTML_ZooUpdateGuestReturn = document.querySelector(".GuestReturn");
 let Zoo_ = new Zoo("Zoo", 50, 0);
 let animal1 = ["Perry", 2, 3.2, "Male", false, 0, "Platypus"];
 let animal2 = ["Harry", 2, 3.2, "Male", false, 0, "Hummingbird"];
-let animal3 = ["Sherry", 2, 852, "Female", true, 0, "Shark"];
+let animal3 = ["Sherry", 2, 852, "Female", false, 0, "Shark"];
 let animal4 = ["Cherry", 2, 3.2, "Female", false, 0, "Chimpanzee"];
 Zoo_.Animals = [
   AnimalInterface(animal1),
@@ -55,6 +56,18 @@ HTML_ZooAddAnimalButton.onclick = (e) => {
 HTML_ZooAddOneGuestButton.onclick = (e) => {
   e.preventDefault();
   ZooEvents.AddGuestListener(Zoo_, HTML_ZooGuests);
+};
+
+HTML_ZooBirthChild.onclick = (e) => {
+  e.preventDefault();
+  ZooEvents.BirthChildListener(
+    Zoo_,
+    HTML_ZooAnimalsForm,
+    HTML_ZooSelectAnimal,
+    HTML_ZooAnimalsTable,
+    HTML_ZooAnimalCount,
+    HTMLZooFunctions
+  );
 };
 
 HTML_ZooDeleteAnimalButton.onclick = (e) => {

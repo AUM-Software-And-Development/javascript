@@ -21,6 +21,7 @@ class Animal {
     if (this.Gender.toLowerCase() === "male") {
       throw "This animal is not a woman.";
     } else {
+      this.Baby = this.GenerateBaby();
       this.IsPregnant = true;
     }
   }

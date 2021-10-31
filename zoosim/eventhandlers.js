@@ -24,6 +24,38 @@ export class ZooEvents {
       htmlLocation.innerHTML = `<p> ${zoo.NumberOfGuests} </p>`;
   }
 
+  static BirthChildListener(
+    zoo,
+    form,
+    selector,
+    table,
+    htmlLocation,
+    polymorphic
+  ) {
+    try {
+      zoo.BirthChild(zoo.Animals[selector.selectedIndex]);
+      polymorphic.UpdateAnimalOnTable(zoo, selector.selectedIndex, table, true);
+      polymorphic.UpdateAnimalOnTable(
+        zoo,
+        zoo.Animals.length - 1,
+        table,
+        false
+      );
+      polymorphic.FillAnimalForm(
+        zoo.Animals,
+        form,
+        selector.options[selector.selectedIndex].text
+      );
+      polymorphic.AddToSelectBox(
+        selector,
+        zoo.Animals[zoo.Animals.length - 1].Name
+      );
+      htmlLocation.innerHTML = `<p> ${zoo.Animals.length} </p>`;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   static DeleteAnimalListener(zoo, selector, table, htmlLocation, polymorphic) {
     zoo.RemoveAnimal(zoo.Animals[selector.selectedIndex]);
     polymorphic.DeleteAnimalFromTable(
@@ -52,6 +84,7 @@ export class ZooEvents {
       }
     } else {
       zoo.Animals[selector.selectedIndex].IsPregnant = false;
+      zoo.Animals[selector.selectedIndex].Baby = undefined;
     }
 
     polymorphic.FillAnimalForm(
@@ -59,7 +92,9 @@ export class ZooEvents {
       form,
       selector.options[selector.selectedIndex].text
     );
-    polymorphic.UpdateAnimalOnTable(zoo, selector, table);
+    polymorphic.UpdateAnimalOnTable(zoo, selector.selectedIndex, table, true);
+    selector.options[selector.selectedIndex].text =
+      zoo.Animals[selector.selectedIndex].Name;
   }
 
   static SelectListener(zoo, form, selctor, polymorphic) {

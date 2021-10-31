@@ -10,7 +10,6 @@ export class ZooEvents {
     let changeRequest = new FormData(form);
     if (polymorphic.ValidateAnimalForm(changeRequest)) {
       zoo.AddAnimal(polymorphic.GetAnimalChanges(changeRequest));
-      console.log(zoo.Animals);
       polymorphic.UpdateAnimalOnTable(
         zoo,
         zoo.Animals.length - 1,

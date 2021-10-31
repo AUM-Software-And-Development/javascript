@@ -10,7 +10,13 @@ export class ZooEvents {
     let changeRequest = new FormData(form);
     if (polymorphic.ValidateAnimalForm(changeRequest)) {
       zoo.AddAnimal(polymorphic.GetAnimalChanges(changeRequest));
-      polymorphic.AddAnimalToTable(table, zoo.Animals[zoo.Animals.length - 1]);
+      console.log(zoo.Animals);
+      polymorphic.UpdateAnimalOnTable(
+        zoo,
+        zoo.Animals.length - 1,
+        table,
+        false
+      );
       polymorphic.AddToSelectBox(
         selector,
         zoo.Animals[zoo.Animals.length - 1].Name
@@ -33,6 +39,7 @@ export class ZooEvents {
     polymorphic
   ) {
     try {
+      let saveIndex = selector.selectedIndex;
       zoo.BirthChild(zoo.Animals[selector.selectedIndex]);
       polymorphic.UpdateAnimalOnTable(zoo, selector.selectedIndex, table, true);
       polymorphic.UpdateAnimalOnTable(
@@ -50,6 +57,7 @@ export class ZooEvents {
         selector,
         zoo.Animals[zoo.Animals.length - 1].Name
       );
+      selector.options[saveIndex].selected = true;
       htmlLocation.innerHTML = `<p> ${zoo.Animals.length} </p>`;
     } catch (error) {
       console.log(error);
@@ -72,6 +80,9 @@ export class ZooEvents {
 
     if (polymorphic.ValidateAnimalForm(changeRequest)) {
       polymorphic.UpdateAnimal(zoo, selector, table, changeRequest);
+      polymorphic.UpdateAnimalOnTable(zoo, selector.selectedIndex, table, true);
+      selector.options[selector.selectedIndex].text =
+        zoo.Animals[selector.selectedIndex].Name;
     }
   }
 

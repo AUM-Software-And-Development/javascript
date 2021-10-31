@@ -51,6 +51,8 @@ class Zoo {
   }
 
   UpdateAnimal(animalInterface, index) {
+    console.log(animalInterface);
+    console.log(index);
     this.Animals.splice(index, 1, animalInterface);
   }
 

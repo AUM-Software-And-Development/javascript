@@ -29,7 +29,6 @@ Zoo_.Animals = [
   AnimalInterface(animal3),
   AnimalInterface(animal4),
 ];
-console.log(Zoo_.Animals);
 
 Zoo_.AdmitGuests();
 HTML_ZooName.innerHTML = `<p> ${Zoo_.Name} </p>`;
@@ -91,7 +90,7 @@ HTML_ZooEditAnimalButton.onclick = (e) => {
     HTMLZooFunctions
   );
 };
-console.log(HTML_ZooAnimalPregnancy);
+
 HTML_ZooAnimalPregnancy.onclick = (e) => {
   e.preventDefault();
   ZooEvents.PregancyListener(

@@ -8,9 +8,7 @@ class Animal {
     this.MoveDistance = 0.0;
     this.Dropdown = Animal;
     this.Move = MoveMethods.Move;
-    if (this.Name === "baby") {
-      this.Baby = undefined;
-    } else if (this.IsPregnant) {
+    if (this.IsPregnant === true && this.Gender === "Female") {
       this.Baby = this.GenerateBaby();
     } else {
       this.Baby = undefined;

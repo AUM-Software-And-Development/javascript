@@ -1,19 +1,4 @@
 export class HTMLZooFunctions {
-  static AddAnimalToTable(table, obj) {
-    let row = table.insertRow();
-    Object.values(obj).forEach((field) => {
-      let cell = row.insertCell();
-      let cellData;
-      if (field.name) {
-        cellData = document.createTextNode(field.name);
-      } else {
-        cellData = document.createTextNode(field);
-      }
-
-      cell.appendChild(cellData);
-    });
-  }
-
   static AddToSelectBox(selector, text) {
     let selectableOption = document.createElement("option");
     selectableOption.text = text;
@@ -114,16 +99,6 @@ export class HTMLZooFunctions {
       /* Get index */
       let selected = selector.selectedIndex;
       zoo.UpdateAnimal(this.GetAnimalChanges(changeRequest), selected);
-
-      table.rows[selected + 1].innerHTML = "";
-      Object.values(zoo.Animals[selected]).forEach((field) => {
-        if (field.name) {
-          table.rows[selected + 1].innerHTML += `<td>${field.name}</td>`;
-        } else {
-          table.rows[selected + 1].innerHTML += `<td>${field}</td>`;
-        }
-      });
-      selector.options[selected].text = zoo.Animals[selected].Name;
     }
   }
 

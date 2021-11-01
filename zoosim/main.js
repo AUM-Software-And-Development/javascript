@@ -1,22 +1,23 @@
 import { HTMLZooFunctions } from "./functions.js";
 import { ZooEvents } from "./eventhandlers.js";
 
-let HTML_ZooAddAnimalButton = document.getElementById("AddAnimalButton");
-let HTML_ZooAnimalCount = document.querySelector(".NumberOfAnimals");
-let HTML_ZooAddOneGuestButton = document.getElementById("AddGuestButton");
-let HTML_ZooAnimalsForm = document.querySelector(".AnimalEditor");
-let HTML_ZooAnimalsTable = document.querySelector(".ZooTable");
-let HTML_ZooBirthChild = document.getElementById("AnimalBirth");
-let HTML_ZooCapacity = document.querySelector(".Capacity");
-let HTML_ZooDeleteAnimalButton = document.getElementById("RemoveAnimalButton");
-let HTML_ZooEditAnimalButton = document.getElementById("ApplyToAnimalButton");
-let HTML_ZooGuests = document.querySelector(".NumberOfGuests");
-let HTML_ZooGuestForm = document.querySelector(".GuestEditor");
-let HTML_ZooName = document.querySelector(".Name");
-let HTML_ZooAnimalPregnancy = document.getElementById("AnimalPregnancy");
-let HTML_ZooSelectAnimal = document.querySelector(".AnimalsSelect");
-let HTML_ZooUpdateGuestAmount = document.getElementById("UpdateGuestsButton");
-let HTML_ZooUpdateGuestReturn = document.querySelector(".GuestReturn");
+const HTML_ZooAddAnimalButton = document.getElementById("AddAnimalButton");
+const HTML_ZooAnimalCount = document.querySelector(".NumberOfAnimals");
+const HTML_ZooAddOneGuestButton = document.getElementById("AddGuestButton");
+const HTML_ZooAnimalsForm = document.querySelector(".AnimalEditor");
+const HTML_ZooAnimalsTable = document.querySelector(".ZooTable");
+const HTML_ZooBirthChild = document.getElementById("AnimalBirth");
+const HTML_ZooCapacity = document.querySelector(".Capacity");
+const HTML_ZooDeleteAnimalButton =
+  document.getElementById("RemoveAnimalButton");
+const HTML_ZooEditAnimalButton = document.getElementById("ApplyToAnimalButton");
+const HTML_ZooGuests = document.querySelector(".NumberOfGuests");
+const HTML_ZooGuestForm = document.querySelector(".GuestEditor");
+const HTML_ZooName = document.querySelector(".Name");
+const HTML_ZooAnimalPregnancy = document.getElementById("AnimalPregnancy");
+const HTML_ZooSelectAnimal = document.querySelector(".AnimalsSelect");
+const HTML_ZooUpdateGuestAmount = document.getElementById("UpdateGuestsButton");
+const HTML_ZooUpdateGuestReturn = document.querySelector(".GuestReturn");
 
 let Zoo_ = new Zoo("Zoo", 50, 0);
 let animal1 = ["Perry", 2, 3.2, "Male", false, 0, "Platypus"];

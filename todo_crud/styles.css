@@ -1,4 +1,11 @@
+/* Actions */
 @import url("https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap");
+button:hover,
+span:hover {
+  cursor: pointer;
+}
+
+/* Static */
 * {
   padding: 0;
   margin: 0;
@@ -61,7 +68,13 @@ body main.display_grid section.app_ div.todo_app section.todoinput input {
 body main.display_grid section.app_ div.todo_app section.todoinput button {
   width: 25px;
   border: none;
+  background-color: rgba(96, 225, 4, 0.01);
+  pointer-events: none;
+}
+
+body main.display_grid section.app_ div.todo_app section.todoinput button.active {
   background-color: rgba(96, 225, 4, 0.25);
+  pointer-events: auto;
 }
 
 body main.display_grid section.app_ div.todo_app section.todolist ul {
@@ -76,7 +89,7 @@ body main.display_grid section.app_ div.todo_app section.todolist li {
   margin-top: 6px;
   margin-bottom: 6px;
   padding-left: 6px;
-  background-color: rgba(225, 150, 96, 0.96);
+  background-color: rgba(225, 144, 96, 0.96);
   line-height: 36px;
   border-radius: 3px;
 }
@@ -90,7 +103,7 @@ body main.display_grid section.app_ div.todo_app section.todolist li span {
 
 body main.display_grid section.app_ div.todo_app section.todofooter button {
   height: 25px;
-  width: 72%;
+  width: 25%;
   margin-left: 50%;
   -webkit-transform: translate(-50%, 50%);
           transform: translate(-50%, 50%);

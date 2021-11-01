@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Old+Mincho&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* Set all height and width properties to include padding for a more universal look when desired */
+  font-family: "Zen Old Mincho", serif;
+  font-size: 16px;
+  font-weight: 256;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-image: url(https://images.unsplash.com/photo-1635078645658-9adaefeddc7f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+  background-repeat: no-repeat;
+
+  & main.display_grid {
+    display: inline-grid;
+    position: absolute;
+    margin-top: 4vh;
+    margin-left: 16vw;
+
+    & section.app_ {
+      position: relative;
+      min-width: 324px;
+      max-width: 324px;
+      background-color: rgba(16, 144, 144, 0.96);
+      padding: 16px;
+      border-radius: 4px;
+
+      /*app1*/
+
+      & div.todo_app {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        & header {
+          font-size: 25px;
+          font-weight: 729;
+        }
+        & section.todoinput {
+          height: 25px;
+          & input {
+            margin-left: 4px;
+            width: 81%;
+            font-size: 18px;
+            border: 1px solid #4444;
+            border-radius: 2px;
+          }
+          & button {
+            width: 25px;
+            border: none;
+            background-color: rgba(96, 225, 4, 0.25);
+          }
+        }
+        & section.todolist {
+          & ul {
+            padding: 4px 0;
+            list-style: none;
+          }
+          & li {
+            height: 36px;
+            width: 90%;
+            margin-left: 4px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            padding-left: 6px;
+            background-color: rgba(225, 150, 96, 0.96);
+            line-height: 36px;
+            border-radius: 3px;
+            & span {
+              position: absolute;
+              color: rgba(225, 96, 4, 0.96);
+              margin-top: 9px;
+              right: 0px;
+            }
+          }
+        }
+        & section.todofooter {
+          & button {
+            height: 25px;
+            width: 72%;
+            margin-left: 50%;
+            transform: translate(-50%, 50%);
+            border: none;
+            background-color: rgba(225, 72, 36, 0.96);
+            border-radius: 3px;
+            margin-bottom: 3px;
+          }
+        }
+      }
+    }
+  }
+}

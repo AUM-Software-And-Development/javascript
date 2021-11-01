@@ -8,12 +8,12 @@ export class ToDoModule {
       this.Span = undefined;
       this.ReadToDoList();
       this.InitializeReadListener();
-      this.InitializeSpanClick();
       this.InitializeSubmitClick();
     } catch (error) {
       return error;
     }
   }
+
   InitializeReadListener() {
     this.Input.onkeyup = () => {
       let userData = this.Input.value;
@@ -28,14 +28,25 @@ export class ToDoModule {
   DestructureReadListener() {
     this.Input.onkeyup = undefined;
   }
+
   InitializeSpanClick() {
     this.Span = document.querySelectorAll(this.SpanName);
-    this.Span.forEach((item) => {
+    this.Span.forEach((item, index) => {
       item.onclick = () => {
-        console.log("Test");
+        this.DeleteToDoListItem(index);
+        console.log(index);
       };
     });
   }
+  DestructureSpanClick() {
+    this.Span = document.querySelectorAll(this.SpanName);
+    this.Span.forEach((item, index) => {
+      item.onclick = () => {
+        undefined;
+      };
+    });
+  }
+
   InitializeSubmitClick() {
     this.Button.onclick = () => {
       let userData = this.Input.value;
@@ -54,6 +65,14 @@ export class ToDoModule {
     this.Button.onclick = undefined;
   }
 
+  DeleteToDoListItem(index) {
+    let readLocalStorage = localStorage.getItem("New ToDo");
+    let toDoList = JSON.parse(readLocalStorage);
+    toDoList.splice(index, 1);
+    localStorage.setItem("New ToDo", JSON.stringify(toDoList));
+    this.ReadToDoList();
+  }
+
   ReadToDoList() {
     let readLocalStorage = localStorage.getItem("New ToDo");
     let toDoList;
@@ -63,10 +82,15 @@ export class ToDoModule {
       toDoList = JSON.parse(readLocalStorage);
     }
     let listItem = "";
-    toDoList.forEach((element, index) => {
+    toDoList.forEach((element) => {
       listItem += `<li>${element}<span class="fas fa-trash"></span></li>`;
     });
     this.List.innerHTML = listItem;
+    this.OnRead();
+  }
+
+  OnRead() {
     this.Input.value = "";
+    this.InitializeSpanClick();
   }
 }

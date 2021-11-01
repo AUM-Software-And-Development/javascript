@@ -1,17 +1,29 @@
 export class ToDoModule {
-  constructor(read, update, list, span) {
+  constructor(read, update, list, span, count, deleteall) {
     try {
       this.Input = read;
       this.Button = update;
       this.List = list;
       this.SpanName = span;
       this.Span = undefined;
+      this.Count = count;
+      this.DeleteAllButton = deleteall;
       this.ReadToDoList();
       this.InitializeReadListener();
       this.InitializeSubmitClick();
+      this.InitializeDeleteAllClick();
     } catch (error) {
       return error;
     }
+  }
+
+  InitializeDeleteAllClick() {
+    this.DeleteAllButton.onclick = () => {
+      this.DeleteAll();
+    };
+  }
+  DestructureDeleteAllClick() {
+    this.DeleteAllButton.onclick = undefined;
   }
 
   InitializeReadListener() {
@@ -65,6 +77,12 @@ export class ToDoModule {
     this.Button.onclick = undefined;
   }
 
+  DeleteAll() {
+    let toDoList = new Array();
+    localStorage.setItem("New ToDo", JSON.stringify(toDoList));
+    this.ReadToDoList();
+  }
+
   DeleteToDoListItem(index) {
     let readLocalStorage = localStorage.getItem("New ToDo");
     let toDoList = JSON.parse(readLocalStorage);
@@ -77,7 +95,7 @@ export class ToDoModule {
     let readLocalStorage = localStorage.getItem("New ToDo");
     let toDoList;
     if (readLocalStorage === null) {
-      toDoList = [];
+      toDoList = new Array();
     } else {
       toDoList = JSON.parse(readLocalStorage);
     }
@@ -91,6 +109,13 @@ export class ToDoModule {
 
   OnRead() {
     this.Input.value = "";
+    this.Button.classList.remove("active");
     this.InitializeSpanClick();
+    this.Count.innerHTML = `There are ${this.Span.length} total tasks to complete`;
+    if (this.Span.length > 0) {
+      this.DeleteAllButton.classList.add("active");
+    } else {
+      this.DeleteAllButton.classList.remove("active");
+    }
   }
 }

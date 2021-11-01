@@ -101,15 +101,25 @@ body main.display_grid section.app_ div.todo_app section.todolist li span {
   right: 0px;
 }
 
+body main.display_grid section.app_ div.todo_app section.todofooter span {
+  cursor: auto;
+}
+
 body main.display_grid section.app_ div.todo_app section.todofooter button {
   height: 25px;
   width: 25%;
   margin-left: 50%;
   -webkit-transform: translate(-50%, 50%);
           transform: translate(-50%, 50%);
+  background-color: rgba(225, 72, 36, 0.16);
   border: none;
-  background-color: rgba(225, 72, 36, 0.96);
   border-radius: 3px;
   margin-bottom: 3px;
+  cursor: auto;
+}
+
+body main.display_grid section.app_ div.todo_app section.todofooter button.active {
+  background-color: rgba(225, 72, 36, 0.96);
+  cursor: pointer;
 }
 /*# sourceMappingURL=styles.css.map */

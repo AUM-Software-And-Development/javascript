@@ -8,90 +8,92 @@ export class ToDoModule {
       this.Span = undefined;
       this.Count = count;
       this.DeleteAllButton = deleteall;
-      this.ReadToDoList();
+      this.ReadToDoList(this);
       this.InitializeReadListener();
       this.InitializeSubmitClick();
       this.InitializeDeleteAllClick();
+      // this.DestructureReadListener();
+      // this.DestructureSubmitClick();
+      // this.DestructureDeleteAllClick();
+      // this.DestructureSpanClick();
     } catch (error) {
       return error;
     }
   }
 
+  // Initializers call EventDelegation to keep code tidy. What this does is pull
+  // references into handlers, keeping the module reference in tact, by passing it
+  // as a parameter.
   InitializeDeleteAllClick() {
-    this.DeleteAllButton.onclick = () => {
-      this.DeleteAll();
-    };
+    EventDelegation.InitializeClick(this.DeleteAllButton, this.DeleteAll, this);
   }
   DestructureDeleteAllClick() {
-    this.DeleteAllButton.onclick = undefined;
+    EventDelegation.DestructureClick(this.DeleteAllButton);
   }
 
   InitializeReadListener() {
-    this.Input.onkeyup = () => {
-      let userData = this.Input.value;
-      userData.trim();
-      if (userData != 0 && userData.length < 28) {
-        this.Button.classList.add("active");
-      } else {
-        this.Button.classList.remove("active");
-      }
-    };
+    EventDelegation.InitializeKeyUp(this.Input, this.FollowKeys, this);
   }
   DestructureReadListener() {
-    this.Input.onkeyup = undefined;
+    EventDelegation.DestructureKeyUp(this.Input);
   }
 
   InitializeSpanClick() {
     this.Span = document.querySelectorAll(this.SpanName);
-    this.Span.forEach((item, index) => {
-      item.onclick = () => {
-        this.DeleteToDoListItem(index);
-        console.log(index);
-      };
-    });
+    EventDelegation.InitializeGroupClicks(
+      this.Span,
+      this.DeleteToDoListItem,
+      this
+    );
   }
   DestructureSpanClick() {
     this.Span = document.querySelectorAll(this.SpanName);
-    this.Span.forEach((item, index) => {
-      item.onclick = () => {
-        undefined;
-      };
-    });
+    EventDelegation.DestructureGroupClicks(this.Span);
   }
 
   InitializeSubmitClick() {
-    this.Button.onclick = () => {
-      let userData = this.Input.value;
-      let updateLocalStorage = localStorage.getItem("New ToDo");
-      if (updateLocalStorage === null) {
-        updateLocalStorage = new Array();
-      } else {
-        updateLocalStorage = JSON.parse(updateLocalStorage);
-      }
-      updateLocalStorage.push(userData);
-      localStorage.setItem("New ToDo", JSON.stringify(updateLocalStorage));
-      this.ReadToDoList();
-    };
+    EventDelegation.InitializeClick(
+      this.Button,
+      () => {
+        this.StoreKeysInLocalStorage(this);
+        this.ReadToDoList(this);
+      },
+      this
+    );
   }
   DestructureSubmitClick() {
-    this.Button.onclick = undefined;
+    EventDelegation.DestructureClick(this.Button);
   }
 
-  DeleteAll() {
+  // Gets local storage and sets the value to an empty array
+  DeleteAll(module) {
     let toDoList = new Array();
     localStorage.setItem("New ToDo", JSON.stringify(toDoList));
-    this.ReadToDoList();
+    module.ReadToDoList(module);
   }
 
-  DeleteToDoListItem(index) {
+  // Gets local storage and splices an item from it
+  DeleteToDoListItem(index, module) {
     let readLocalStorage = localStorage.getItem("New ToDo");
     let toDoList = JSON.parse(readLocalStorage);
     toDoList.splice(index, 1);
     localStorage.setItem("New ToDo", JSON.stringify(toDoList));
-    this.ReadToDoList();
+    module.ReadToDoList(module);
   }
 
-  ReadToDoList() {
+  // Keeps track that current key count is within range to submit
+  FollowKeys(module) {
+    let userData = module.Input.value;
+    userData.trim();
+    if (userData != 0 && userData.length < 28) {
+      module.Button.classList.add("active");
+    } else {
+      module.Button.classList.remove("active");
+    }
+  }
+
+  // Applies a list item to an element using what's in local storage
+  ReadToDoList(module) {
     let readLocalStorage = localStorage.getItem("New ToDo");
     let toDoList;
     if (readLocalStorage === null) {
@@ -103,19 +105,33 @@ export class ToDoModule {
     toDoList.forEach((element) => {
       listItem += `<li>${element}<span class="fas fa-trash"></span></li>`;
     });
-    this.List.innerHTML = listItem;
-    this.OnRead();
+    module.List.innerHTML = listItem;
+    module.OnRead(module);
   }
 
-  OnRead() {
-    this.Input.value = "";
-    this.Button.classList.remove("active");
-    this.InitializeSpanClick();
-    this.Count.innerHTML = `There are ${this.Span.length} total tasks to complete`;
-    if (this.Span.length > 0) {
-      this.DeleteAllButton.classList.add("active");
+  // Stores keys in local storage when requested
+  StoreKeysInLocalStorage(module) {
+    let userData = module.Input.value;
+    let updateLocalStorage = localStorage.getItem("New ToDo");
+    if (updateLocalStorage === null) {
+      updateLocalStorage = new Array();
     } else {
-      this.DeleteAllButton.classList.remove("active");
+      updateLocalStorage = JSON.parse(updateLocalStorage);
+    }
+    updateLocalStorage.push(userData);
+    localStorage.setItem("New ToDo", JSON.stringify(updateLocalStorage));
+  }
+
+  // OnRead event to ensure certain styles are changed to suit it
+  OnRead(module) {
+    module.Input.value = "";
+    module.Button.classList.remove("active");
+    module.InitializeSpanClick();
+    module.Count.innerHTML = `There are ${module.Span.length} total tasks to complete`;
+    if (module.Span.length > 0) {
+      module.DeleteAllButton.classList.add("active");
+    } else {
+      module.DeleteAllButton.classList.remove("active");
     }
   }
 }

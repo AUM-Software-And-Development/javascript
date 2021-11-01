@@ -1,4 +1,4 @@
-import { ToDoModule } from "./ToDoModule.js";
+import { ToDoModule } from "./todomodule.js";
 
 const todo_input = document.querySelector("section.todoinput input");
 const todo_submit = document.querySelector("section.todoinput button");

@@ -29,7 +29,7 @@ body main.display_grid {
   display: inline-grid;
   position: absolute;
   margin-top: 4vh;
-  margin-left: 16vw;
+  margin-left: 256px;
 }
 
 body main.display_grid section.app_ {

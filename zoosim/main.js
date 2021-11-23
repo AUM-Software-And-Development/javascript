@@ -20,16 +20,66 @@ const HTML_ZooUpdateGuestAmount = document.getElementById("UpdateGuestsButton");
 const HTML_ZooUpdateGuestReturn = document.querySelector(".GuestReturn");
 
 let Zoo_ = new Zoo("Zoo", 50, 0);
-let animal1 = ["Perry", 2, 3.2, "Male", false, 0, "Platypus"];
-let animal2 = ["Harry", 2, 3.2, "Male", false, 0, "Hummingbird"];
-let animal3 = ["Sherry", 2, 852, "Female", false, 0, "Shark"];
-let animal4 = ["Cherry", 2, 3.2, "Female", false, 0, "Chimpanzee"];
-Zoo_.Animals = [
-  AnimalInterface(animal1),
-  AnimalInterface(animal2),
-  AnimalInterface(animal3),
-  AnimalInterface(animal4),
-];
+
+let jsonAnimals =
+  '{                             \
+  "Animals": [                   \
+    {                            \
+      "Name": "Perry",           \
+      "Age": 2,                  \
+      "Weight": 3.2,             \
+      "Gender": "Male",          \
+      "IsPregnant": false,       \
+      "MoveDistance": 0,         \
+      "Dropdown": "Platypus"     \
+    },                           \
+    {                            \
+      "Name": "Harry",           \
+      "Age": 2,                  \
+      "Weight": 3.2,             \
+      "Gender": "Male",          \
+      "IsPregnant": false,       \
+      "MoveDistance": 0,         \
+      "Dropdown": "Hummingbird"  \
+    },                           \
+    {                            \
+      "Name": "Sherry",          \
+      "Age": 2,                  \
+      "Weight": 852,             \
+      "Gender": "Female",        \
+      "IsPregnant": false,       \
+      "MoveDistance": 0,         \
+      "Dropdown": "Shark"        \
+    },                           \
+    {                            \
+      "Name": "Cherry",          \
+      "Age": 2,                  \
+      "Weight": 3.2,             \
+      "Gender": "Female",        \
+      "IsPregnant": false,       \
+      "MoveDistance": 0,         \
+      "Dropdown": "Chimpanzee"   \
+    }                            \
+  ]                              \
+}';
+
+let animals = JSON.parse(jsonAnimals);
+
+Object.values(animals)[0].forEach((animal) => {
+  Zoo_.Animals.push(AnimalInterface(Object.values(animal)));
+});
+
+// let animal1 = ["Perry", 2, 3.2, "Male", false, 0, "Platypus"];
+// let animal2 = ["Harry", 2, 3.2, "Male", false, 0, "Hummingbird"];
+// let animal3 = ["Sherry", 2, 852, "Female", false, 0, "Shark"];
+// let animal4 = ["Cherry", 2, 3.2, "Female", false, 0, "Chimpanzee"];
+
+// Zoo_.Animals = [
+//   AnimalInterface(animal1),
+//   AnimalInterface(animal2),
+//   AnimalInterface(animal3),
+//   AnimalInterface(animal4),
+// ];
 
 Zoo_.AdmitGuests();
 HTML_ZooName.innerHTML = `<p> ${Zoo_.Name} </p>`;

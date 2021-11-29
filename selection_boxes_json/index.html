@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Selection Boxes</title>
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <section class="box_display">
+        <div class="inbox_messages">
+            <div>
+                <span id="messageDisplay"></span>
+                <input type="radio" id="message_1" name="messages">
+            </div>
+            <div>
+                <span id="messageDisplay"></span>
+                <input type="radio" id="message_2" name="messages">
+            </div>
+            <div>
+                <span id="messageDisplay"></span>
+                <input type="radio" id="message_3" name="messages">
+            </div>
+            <div>
+                <span id="messageDisplay"></span>
+                <input type="radio" id="message_4" name="messages">
+            </div>
+            <button onclick="ReadInbox()">Next inbox</button>
+        </div>
+    </section>
+
+    <script>
+
+        let messagesDisplays = document.querySelectorAll('#messageDisplay')
+        console.log(messagesDisplays)
+
+        let inject = JSON.stringify(inboxes)
+
+        console.log(JSON.parse(inject));
+
+    </script>
+
+</body>
+
+</html>

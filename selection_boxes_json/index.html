@@ -7,40 +7,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Selection Boxes</title>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <section class="box_display">
         <div class="inbox_messages">
-            <div>
-                <span id="messageDisplay"></span>
-                <input type="radio" id="message_1" name="messages">
+            <div class="message_box">
+                <span id="subjectDisplay"></span><br>
+                <span id="messageDisplay"></span><br>
             </div>
-            <div>
-                <span id="messageDisplay"></span>
-                <input type="radio" id="message_2" name="messages">
+            <div class="message_box">
+                <span id="subjectDisplay"></span><br>
+                <span id="messageDisplay"></span><br>
             </div>
-            <div>
-                <span id="messageDisplay"></span>
-                <input type="radio" id="message_3" name="messages">
+            <div class="message_box">
+                <span id="subjectDisplay"></span><br>
+                <span id="messageDisplay"></span><br>
             </div>
-            <div>
-                <span id="messageDisplay"></span>
-                <input type="radio" id="message_4" name="messages">
+            <div class="message_box">
+                <span id="subjectDisplay"></span><br>
+                <span id="messageDisplay"></span><br>
             </div>
-            <button onclick="ReadInbox()">Next inbox</button>
+            <div class="button_area">
+                <button onclick="NextInbox()">Next inbox</button>
+            </div>
         </div>
     </section>
 
     <script>
 
+        let index_position = 0
+        let content_position = 1
+        let expected_fields = 4
+        let accumulator = expected_fields
+
+        let subjectDisplays = document.querySelectorAll('#subjectDisplay')
         let messagesDisplays = document.querySelectorAll('#messageDisplay')
-        console.log(messagesDisplays)
 
-        let inject = JSON.stringify(inboxes)
+        let json_object = JSON.stringify(inboxes)
 
-        console.log(JSON.parse(inject));
+        let inject = JSON.parse(json_object)
+
+        inject = Object.values(inject[index_position])
+
+        console.log(inject)
+
+        let present_count = 0
+
+        NextInbox()
+
+        function NextInbox() {
+            for (present_count; present_count < inject.length; present_count++) {
+                if (content_position === 1)
+                    subjectDisplays[index_position].innerHTML = inject[present_count]
+
+                else
+                    messagesDisplays[index_position].innerHTML = inject[present_count]
+
+                if (content_position < 2)
+                    content_position++
+
+                else { content_position = 1; index_position++; }
+
+                if (index_position === subjectDisplays.length) {
+                    index_position = 0
+                    content_position--
+                    accumulator += expected_fields
+                    break
+                }
+            }
+
+            if (present_count === inject.length && accumulator < present_count) {
+                let continue_counting = accumulator - inject.length
+                for (continue_counting; continue_counting < accumulator; continue_counting++) {
+                    subjectDisplays[index_position].innerHTML = " "
+                    messagesDisplays[index_position].innerHTML = " "
+                    index_position++
+                    if (index_position === expected_fields)
+                        return
+                }
+            }
+        }
 
     </script>
 

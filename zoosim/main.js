@@ -21,8 +21,39 @@ const HTML_ZooUpdateGuestReturn = document.querySelector(".GuestReturn");
 
 let Zoo_ = new Zoo("Zoo", 50, 0);
 
-function start() {
-  fetch("http://localhost:3000/school-api/class-animal-data")
+let testing = false;
+
+function registers_service_worker() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./zoo_service_worker.js", { scope: "./" })
+        .then((response) => {
+          console.log("Attempting to log the zoo using the browsers cache.");
+        })
+        .catch((error) => {
+          console.log("service worker failed with this error: " + error);
+        });
+    });
+  }
+}
+
+function deregisters_service_workers() {
+  navigator.serviceWorker
+    .getRegistrations()
+    .then((registrations) => {
+      registrations.forEach((registration) => {
+        registration.unregister();
+        console.log("Service worker taken offline.");
+      });
+    })
+    .catch((error) => "Service worker is stuck online. Error: " + error);
+}
+
+function last_stable_start() {
+  registers_service_worker();
+
+  fetch("https://ericdee.me/school-api/class-animal-data")
     .then(function (res) {
       return res.json();
     })
@@ -38,7 +69,31 @@ function start() {
     });
 }
 
-start();
+function test_start() {
+  console.log("****Testing****");
+  registers_service_worker();
+
+  fetch("http://localhost:80/school-api/class-animal-data")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      let animals = JSON.parse(data);
+      Object.values(animals)[0].forEach((animal) => {
+        Zoo_.Animals.push(AnimalInterface(Object.values(animal)));
+      });
+      build_on_success();
+    })
+    .catch((e) => {
+      console.log(`The zoo did not build due to this error: ${e}`);
+    });
+}
+
+if (testing) {
+  test_start();
+} else {
+  last_stable_start();
+}
 
 function build_on_success() {
   Zoo_.AdmitGuests();
